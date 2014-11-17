@@ -1,0 +1,42 @@
+{# app/Resources/FOSUserBundle/views/Security/login.html.twig #}
+{% extends '::layout_clean.html.twig' %}
+{% block title %} Login - robotoyun.com{% endblock %}
+{% block content %}
+    <div class="container" style="margin-top:30px">
+        <div class="col-md-12">
+            <div class="modal-dialog" style="margin-bottom:0">
+                <div class="modal-content">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sisteme Giriş</h3>
+                    </div>
+                    <div class="panel-body">
+                        {% if error %}
+                            <div class="mb15 fc-red cnt" style="color: red">Kullanıcı adı veya şifre hatalı.</div><br>
+                        {% endif %}
+                        <form action="{{ path("fos_user_security_check") }}" method="post" role="form">
+                            <fieldset>
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Kullanıcı Adı" name="_username" type="text" autofocus="">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Şifre" name="_password" type="password" value="">
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="_remember_me" type="checkbox" value="Remember Me">Beni Hatırla
+                                    </label>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                <input type="submit" name="_submit" class="btn btn-sm btn-success" value="Sisteme Giriş">
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+    </div>
+
+{% endblock %}

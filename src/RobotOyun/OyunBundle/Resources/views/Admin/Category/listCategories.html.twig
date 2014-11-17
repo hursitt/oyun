@@ -1,0 +1,61 @@
+{% extends "::layout_admin.html.twig" %}
+
+
+{% block content %}
+
+
+    {% for type, flashMessages in app.session.flashbag.all() %}
+        {% for flashMessage in flashMessages %}<br>
+            <div class="alert alert-{{ type == 'notice' ? 'success' : 'warning' }}" role="alert">
+                <a href="#">
+                    <strong>{{ flashMessage }}</strong>
+                </a>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Kategoriler</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Kategori Listesi
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables">
+                            <thead>
+                            <tr>
+                                <th class="col-lg-8">İsim</th>
+                                <th class="col-lg-2">Oyunları Görüntüle</th>
+                                <th class="col-lg-2">Düzenle</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for category in categories %}
+                                <tr>
+                                    <td>{{ category.name }}</td>
+                                    <td><a class="btn btn-success btn-small" href="{{ path('admin_show_category', {'categorySlug': category.slug}) }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
+                                    <td><a class="btn btn-warning btn-small" href="{{ path('admin_edit_category', {'categorySlug': category.slug}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+
+
+{% endblock %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta charset="utf-8"/>
+    <title>{{ game.name }}</title>
+    {% stylesheets filter='cssrewrite,?yui_css'
+        'bundles/robotoyunoyun/Default/css/styles.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    <style type="text/css">
+        body {
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            user-select: none;
+        }
+
+        * {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-touch-callout: none;
+        }
+    </style>
+
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl">
+
+<div id="menu" snap-drawer >
+    <div class="header">Menu</div>
+    {% for category in categories %}
+        <a href="http://m.robotoyun.com/app_dev.php/#!/games/{{ category.id }}/{{ category.slug }}" snap-close>{{ category.name }}</a>
+    {% endfor %}
+</div></div>
+
+<div snap-content snap-options="snapOpts">
+    <button snap-toggle="left" class="gamemenu">menu</button>
+    {{ game.content | raw }}
+</div>
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script src="http://code.angularjs.org/1.2.25/angular-touch.min.js"></script>
+<script src="http://code.angularjs.org/1.2.25/angular-route.min.js"></script>
+<script src="{{ asset('bundles/robotoyunoyun/Default/js/snap.js') }}"></script>
+<script src="{{ asset('bundles/robotoyunoyun/Default/js/snapang.js') }}"></script>
+<script src="{{ asset('bundles/robotoyunoyun/Default/js/app.js') }}"></script>

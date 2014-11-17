@@ -1,0 +1,11 @@
+{% extends "::layout_default.html.twig" %}
+
+{% block content %}
+    <div id="page" ng-view="" ng-clock="" class="ng-scope">
+        <div id="prepage_header" class="ng-scope">
+
+            <img src="{{ game.image.path | apply_filter('70x70') }}" alt="{{ game.name }}">
+            <h1 class="ng-binding">{{ game.name }}</h1></div>
+        <div id="play_btn" class="ng-scope"><a href="{{ path('play_game', {'gameSlug': game.slug}) }}">Play Game</a></div>
+    </div>
+{% endblock %}

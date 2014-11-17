@@ -1,0 +1,43 @@
+{% extends "::layout_admin.html.twig" %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Kategori Düzenleme</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Kategori Düzenleme Formu
+                </div>
+                <div class="panel-body">
+                    <form action="{{ path('admin_edit_category', {'categorySlug': category.slug }) }}" method="post">
+                        <div class="form-group">
+                            <label>Kategori İsmi</label>
+                            {{ form_widget(form.name) }}
+                            {{ form_errors(form.name) }}
+
+                        </div>
+                        <div class="form-group">
+                            <label>Kategori Açıklaması</label>
+                            {{ form_widget(form.description, {'attr': {'class': 'ckeditor'} } ) }}
+                            {{ form_errors(form.description) }}
+                        </div>
+                        <button type="submit" class="btn btn-default">Kategoriyi Güncelle</button>
+
+                        {{ form_rest(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+
+
+{% endblock %}

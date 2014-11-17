@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Robotoyun.com - Admin</title>
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+    {% stylesheets filter='cssrewrite,?yui_css'
+        'bundles/robotoyunoyun/Admin/css/bootstrap.min.css'
+        'bundles/robotoyunoyun/Admin/css/plugins/timeline.css'
+        'bundles/robotoyunoyun/Admin/css/sb-admin-2.css'
+        'bundles/robotoyunoyun/Admin/css/plugins/dataTables.bootstrap.css'
+        'bundles/robotoyunoyun/Admin/font-awesome-4.1.0/css/font-awesome.min.css'
+        'bundles/robotoyunoyun/Admin/bootstrap-switch/css/bootstrap-switch.css'
+        'bundles/robotoyunoyun/Admin/bootstrap-switch/css/bootstrap-switch-main.css'
+
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="{{ path('homepage') }}">Robotoyun.com</a>
+</div>
+<!-- /.navbar-header -->
+
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+            <li {% if menu == 'game' %}class="active"{% endif %}>
+                <a href="#"><i class="fa fa-wrench fa-fw"></i>Oyunlar<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ path('admin_list_games') }}">Listele</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_add_game') }}">Yeni Ekle</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li {% if menu == 'category' %}class="active"{% endif %}>
+                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Kategoriler<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ path('admin_list_categories') }}">Listele</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_add_category') }}">Yeni Ekle</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-edit fa-fw"></i>Çıkış</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+<!-- /.navbar-static-side -->
+</nav>
+
+<div id="page-wrapper">
+{% block content %}{% endblock %}
+</div>
+<!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+
+{% javascripts filter="?yui_js"
+    'bundles/robotoyunoyun/Admin/js/jquery.js'
+    'bundles/robotoyunoyun/Admin/js/bootstrap.min.js'
+    'bundles/robotoyunoyun/Admin/js/plugins/metisMenu/metisMenu.min.js'
+    'bundles/robotoyunoyun/Admin/js/plugins/morris/raphael.min.js'
+    'bundles/robotoyunoyun/Admin/js/plugins/dataTables/jquery.dataTables.js'
+    'bundles/robotoyunoyun/Admin/js/plugins/dataTables/dataTables.bootstrap.js'
+    'bundles/robotoyunoyun/Admin/bootstrap-switch/js/bootstrap-switch.js'
+    'bundles/robotoyunoyun/Admin/bootstrap-switch/js/bootstrap-switch.min.js'
+    'bundles/robotoyunoyun/Admin/custom.js'
+    'bundles/robotoyunoyun/Admin/js/sb-admin-2.js'
+
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+<script src="{{ asset('bundles/robotoyunoyun/Admin/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('bundles/robotoyunoyun/Admin/ckeditor/adapters/jquery.js') }}"></script>
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+{% block javascript %}{% endblock %}
+</body>
+
+</html>

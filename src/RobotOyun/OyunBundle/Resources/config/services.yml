@@ -1,0 +1,4 @@
+services:
+#    roket_oyun_oyun.example:
+#        class: RoketOyun\OyunBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

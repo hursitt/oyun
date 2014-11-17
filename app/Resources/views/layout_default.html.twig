@@ -1,0 +1,132 @@
+
+<!DOCTYPE html><html lang="en"><head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <title>{% block title %}Cep telefonu oyunlari oyna | Robot Oyun{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% stylesheets filter='cssrewrite,?yui_css'
+        'bundles/robotoyunoyun/Default/css/styles.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl">
+
+<div id="menu" snap-drawer >
+    <div class="header">Menu</div>
+    <a href="http://m.robotoyun.com/app_dev.php/#!/" snap-close>Anasayfa</a>
+    <a href="http://m.robotoyun.com/app_dev.php/#!/search" snap-close>Arama</a>
+    {% for category in categories %}
+    <a href="http://m.robotoyun.com/app_dev.php/#!/games/{{ category.id }}/{{ category.slug }}" snap-close>{{ category.name }}</a>
+    {% endfor %}
+</div>
+
+<div id="wrapper" snap-content snap-options="snapOpts">
+    <div id="header">
+        <div id="menubtn"><button snap-toggle="left">menu</button></div>
+        <div id="logo"><a href="http://m.robotoyun.com/#!/">Robot Oyun</a></div>
+    </div>
+
+    <div class="banner_ad" data-my-ad-sense>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Robot mobil ust -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:320px;height:50px"
+             data-ad-client="ca-pub-9547659732723176"
+             data-ad-slot="7010726691"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+   {% block content %}{% endblock %}
+
+
+    <div class="banner_ad footerad" data-my-ad-sense>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Robot Mobil alt -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:300px;height:250px"
+             data-ad-client="ca-pub-9547659732723176"
+             data-ad-slot="9964193098"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div id="footer">
+        <!-- We appreciate our link here-->
+        <div>&copy; Robot Oyun</div>
+    </div></div>
+
+
+<script type="text/ng-template" id="home.html">
+    <h1>Bedava telefon oyunlari</h1>
+    <ul class="gameslist">
+        <li ng-repeat="g in games track by $index">
+            <a href="http://m.robotoyun.com/#!/game/{[{g.url_key}]}">
+                <img src="http://m.robotoyun.com/img/media/cache/188x123/{[{g.thumb}]}" alt="{[{g.name}]}" />
+                <span>{[{g.name}]}</span>
+            </a>
+        </li>
+    </ul>
+    <div id="play_btn" ng-class="{disabled:disable}"><a ng-class="{loading:loading}" ng-click="loadmore()">Daha fazla yukle</a></div>
+</script>
+<script type="text/ng-template" id="game.html">
+    <div id="prepage_header">
+        <img src="http://m.robotoyun.com/img/media/cache/70x70/{[{game.thumb}]}" alt="{[{game.name}]}">
+        <h1>{[{game.name}]}</h1>
+    </div>
+    <div id="play_btn">
+        <a href="http://m.robotoyun.com/games/{[{game.url_key}]}/">Play Game</a></div>
+</script>
+
+<script type="text/ng-template" id="categoryGames.html">
+    <h1>{[{category | uppercase }]} Games</h1>
+    <ul class="gameslist">
+        <li ng-repeat="g in categoryGames track by $index">
+            <a href="http://m.robotoyun.com/#!/game/{[{g.url_key}]}">
+                <img src="http://m.robotoyun.com/img/media/cache/188x123/{[{g.thumb}]}" alt="{[{g.name}]}" />
+                <span>{[{g.name}]}</span>
+            </a>
+        </li>
+    </ul>
+    <div id="play_btn" ng-class="{disabled:disableLoadMoreCategory}"><a ng-class="{loadingLoadMoreCategory:loadingLoadMoreCategory}" ng-click="loadmore()">Daha fazla yukle</a></div>
+</script>
+<script type="text/ng-template" id="search.html">
+    <h1>Search</h1>
+    <input type="text" class="searchbar" placeholder="type to search" ng-model="searchData" />
+    <div class="searchresult">{[{games.length}]} results</div>
+    <ul class="gameslist">
+        <li ng-repeat="g in games track by $index">
+            <a href="http://m.robotoyun.com/#!/game/{[{g.url_key}}">
+                <img src="http://m.robotoyun.com/img/media/cache/188x123/{[{g.thumb}]}" alt="{[{g.name}]}" />
+                <span>{[{g.name}]}</span>
+            </a>
+        </li>
+    </ul>
+</script>
+
+<script>
+    var games={{ games | raw }};
+    var site='http://m.robotoyun.com';
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script src="http://code.angularjs.org/1.2.25/angular-touch.min.js"></script>
+<script src="http://code.angularjs.org/1.2.25/angular-route.min.js"></script>
+
+
+
+{% javascripts filter="?yui_js"
+    'bundles/robotoyunoyun/Default/js/snap.js'
+    'bundles/robotoyunoyun/Default/js/snapang.js'
+    'bundles/robotoyunoyun/Default/js/app.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+</body>
+</html>
